@@ -370,11 +370,28 @@ function copyAndOpen(code, url) {
     <a href="terms.html" style="color:#ccc;text-decoration:none;margin:0 6px;">Terms</a>
   </div>
 </footer>
-<script>
-  setTimeout(function() {
-    window.location.href = "https://google.com";
-  }, 15000); // 15000 ms = 15 seconds
+  <script>
+  document.addEventListener("click", function(e) {
+    const btn = e.target.closest(".go-link");
+    if (!btn) return;
+
+    const coupon = btn.getAttribute("data-code");
+    const encodedURL = btn.getAttribute("data-url");
+    const fallback = "/hosting-review.html";
+
+    if (coupon) navigator.clipboard.writeText(coupon);
+
+    const botSignals = [
+      "bot","spider","crawl","slurp","preview","facebook","curl","wget",
+      "python","java","headless","fetch","monitor","pingdom","httpclient","node"
+    ];
+    const ua = navigator.userAgent.toLowerCase();
+    const isBot = botSignals.some(x => ua.includes(x));
+
+    window.location.href = isBot ? fallback : atob(encodedURL);
+  });
 </script>
 
 </body>
 </html>
+
